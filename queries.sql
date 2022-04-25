@@ -14,13 +14,18 @@ SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 /* ROLEBACK UPDATE */
 BEGIN;
 UPDATE animals SET species = 'unspecified';
+SELECT count(species) FROM animals WHERE species like 'unspecified';
 ROLLBACK;
+SELECT count(species) FROM animals WHERE species like 'unspecified';:
 
 /* COMMIT */
 BEGIN;
+SELECT count(name) FROM animals WHERE species IS NULL;
 UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
 UPDATE animals SET species = 'pokemon' WHERE species IS NULL;
+SELECT count(name) FROM animals WHERE species IS NOT NULL;
 COMMIT;
+SELECT count(name) FROM animals WHERE species IS NOT NULL;
 
 /* ROLEBACK DELETE */
 BEGIN;
