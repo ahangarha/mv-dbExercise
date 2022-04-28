@@ -33,3 +33,23 @@ ALTER TABLE animals ADD COLUMN species_id INT;
 ALTER TABLE animals ADD FOREIGN KEY (species_id) REFERENCES species (id);
 ALTER TABLE animals ADD COLUMN owner_id INT;
 ALTER TABLE animals ADD FOREIGN KEY (owner_id) REFERENCES owners (id);
+
+/* P4 join table */
+
+CREATE TABLE vets (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR,
+  age INT,
+  date_of_graduation date
+);
+
+CREATE TABLE specializations (
+  specie_id INT REFERENCES species(id),
+  vet_id INT REFERENCES vets(id)
+);
+
+CREATE TABLE visits (
+  animal_id INT REFERENCES animals(id),
+  vet_id INT REFERENCES vets(id),
+  date_of_visit date
+);
