@@ -138,7 +138,7 @@ SELECT animals.name, date_of_visit FROM animals
 SELECT animals.name animal, vets.name vet, date_of_visit FROM animals
   JOIN visits ON visits.animal_id = animals.id
   JOIN vets ON visits.vet_id = vets.id
-  ORDER BY date_of_visit ASC
+  ORDER BY date_of_visit DESC
   LIMIT 1;
 
 /* How many visits were with a vet that did not specialize in that animal's species? */
@@ -153,6 +153,9 @@ SELECT count(*) FROM vets
 SELECT count(species.name), species.name FROM species
   JOIN animals ON animals.species_id = species.id
   JOIN visits ON visits.animal_id = animals.id
-  JOIN vets ON vets.name = 'Maisy Smith'
+  JOIN vets ON vets.id = visits.vet_id
+  WHERE vets.name = 'Maisy Smith'
   GROUP BY species.name
+  ORDER BY count(species.name) DESC
+  LIMIT 1
   ;
