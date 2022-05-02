@@ -53,3 +53,5 @@ CREATE TABLE visits (
   vet_id INT REFERENCES vets(id),
   date_of_visit date
 );
+
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
