@@ -2,7 +2,7 @@
 
 CREATE TABLE animals (
   id int GENERATED ALWAYS AS IDENTITY,
-  name varchar(100)
+  name varchar(100),
   date_of_birth date,
   escape_attempts int,
   neutered boolean,
@@ -27,7 +27,6 @@ CREATE TABLE species (
 );
 
 ALTER TABLE animals ADD PRIMARY KEY (id);
-ALTER TABLE animals ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY;
 ALTER TABLE animals DROP COLUMN species;
 ALTER TABLE animals ADD COLUMN species_id INT;
 ALTER TABLE animals ADD FOREIGN KEY (species_id) REFERENCES species (id);
